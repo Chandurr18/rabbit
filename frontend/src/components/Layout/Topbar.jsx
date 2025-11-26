@@ -21,7 +21,7 @@ const Topbar = () => {
 
         {/* Center Text */}
         <div className="text-sm text-center grow">
-          <span>We ship worldwide - Fast ans reliable shipping!</span>
+          <span>We ship worldwide - Fast and reliable shipping!</span>
         </div>
 
         {/* Phone Number */}
