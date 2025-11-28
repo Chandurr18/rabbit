@@ -12,4 +12,11 @@ export default defineConfig({
     }),
     tailwindcss(),
   ],
+
+  // 👇 ADD THIS
+  server: {
+    host: true,          // exposes your dev server to the local network
+    port: 5173,          // optional: force a specific port
+    strictPort: true,    // optional: avoid random ports
+  },
 })

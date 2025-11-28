@@ -22,7 +22,7 @@ const Navbar = () => {
   };
   return (
     <>
-      <nav className="container mx-auto flex items-center justify-between px-12 py-4">
+      <nav className="container mx-auto flex items-center justify-between pl-6 pr-2 sm:px-12 py-4">
         {/* LeftL Logo */}
         <div>
           <Link to="/" className="text-2xl font-medium">
