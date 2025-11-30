@@ -1,4 +1,4 @@
-import { useCallback, useLayoutEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
 
@@ -106,7 +106,7 @@ const NewArrivals = () => {
     }
   }, []);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const container = scrollRef.current;
     if (!container) return;
 
@@ -116,7 +116,7 @@ const NewArrivals = () => {
     return () => {
       container.removeEventListener("scroll", updateScrollButtons);
     };
-  }, [updateScrollButtons]);
+  }, []);
 
   return (
     <section className="mt-8 sm:mt-0">

@@ -4,7 +4,7 @@ import { TbBrandMeta } from "react-icons/tb";
 
 const Topbar = () => {
   return (
-    <div className="bg-rabbit-red text-white">
+    <div className="bg-linear-to-r from-rabbit-red to-pink-800 text-white">
       <div className="container mx-auto flex justify-between items-center px-5 py-2">
         {/* Left Icons */}
         <div className="hidden md:flex items-center space-x-4">
