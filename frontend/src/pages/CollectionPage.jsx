@@ -81,8 +81,8 @@ const CollectionPage = () => {
     document.addEventListener("mousedown", handleClickOutSide);
 
     // Clean Event Listener on UnMount
-    document.removeEventListener("mousedown", handleClickOutSide);
-  });
+    return () => {document.removeEventListener("mousedown", handleClickOutSide)};
+  },[]);
 
   return (
     <div className="flex flex-col lg:flex-row">

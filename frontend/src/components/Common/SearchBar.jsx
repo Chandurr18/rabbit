@@ -17,7 +17,7 @@ const SearchBar = () => {
 
   return (
     <div
-      className={`flex items-center justify-center w-full transition duration-300 ${
+      className={`flex items-center justify-center w-full transition  ${
         isOpen ? "absolute top-0 left-0 w-full bg-white h-24 z-50" : "w-auto"
       }`}
     >
