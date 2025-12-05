@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const protect = require("../middleware/authMiddleware");
+const {protect} = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -44,7 +44,7 @@ router.post("/register", async (req, res) => {
       }
     );
   } catch (error) {
-    console.log("Error userRoutes-46 /register : ", error);
+    console.log("Error userRoutes-47 /register POST:", error);
     res.status(500).send("Server Error");
   }
 });
@@ -88,7 +88,7 @@ router.post("/login", async (req, res) => {
       }
     );
   } catch (error) {
-    console.log("Error userRoutes-91 /login : ", error);
+    console.log("Error userRoutes-91 /login POST:", error);
     res.status(500).send("Server Error");
   }
 });

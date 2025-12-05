@@ -5,6 +5,7 @@ const connectDB = require("./config/db");
 
 // import Routes;
 const userRoutes = require("./routes/userRoutes");
+const productRoutes = require("./routes/productRoutes");
 
 const app = express();
 // to ensure our server is able to work with json data
@@ -26,6 +27,7 @@ app.get("/", (req, res) => {
 
 // API Routes
 app.use("/api/users", userRoutes);
+app.use("/api/products", productRoutes);
 
 
 app.listen(PORT, () => {
