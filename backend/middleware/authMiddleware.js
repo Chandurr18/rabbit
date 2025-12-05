@@ -18,7 +18,7 @@ const protect = async (req, res, next) => {
       req.user = await User.findById(decoded.user.id).select("-password"); // Exclude password
       next();
     } catch (error) {
-      console.log("Error authMiddleware-21 Token Verification failed.", error);
+      console.log("Error authMiddleware-21 protect :Token Verification failed.", error);
       res.status(401).json({ message: "Not authorized, token failed" });
     }
   }
@@ -28,4 +28,13 @@ const protect = async (req, res, next) => {
 };
 
 
-module.exports = protect;
+// Middleware to check if user is an admin
+const admin = async (req,res,next) => {
+  if(req.user && req.user.role == "admin"){
+    return next();
+  }
+  res.status(403).json({message : "Not Authorized as an Admin"});
+}
+
+
+module.exports = {protect, admin};
