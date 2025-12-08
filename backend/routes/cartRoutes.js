@@ -91,8 +91,6 @@ router.post("/", async (req, res) => {
 // @desc Update product quantity in the cart for guest or logged-in user
 // @access Public
 router.put("/", async (req, res) => {
-  console.log("REQ BODY =>", req.body);
-
   const { productId, quantity, size, color, guestId, userId } = req.body;
 
   try {
