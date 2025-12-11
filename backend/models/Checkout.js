@@ -19,6 +19,10 @@ const checkoutItemSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
+    quantity : {
+        type : Number,
+        required : true,
+    }
   },
   { _id: false }
 );
@@ -57,8 +61,8 @@ const checkoutSchema = new mongoose.Schema(
       type: Number,
       required: true,
     },
-    totalPrice: {
-      type: Number,
+    isPaid: {
+      type: Boolean,
       default: false,
     },
     paidAt: {
@@ -70,7 +74,6 @@ const checkoutSchema = new mongoose.Schema(
     },
     paymentDetails: {
       type: mongoose.Schema.Types.Mixed, // store payment-related details (transaction ID, paypal response)
-      required: true,
     },
     isFinalized: {
       type: Boolean,
