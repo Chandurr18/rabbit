@@ -11,6 +11,9 @@ const checkoutRoutes = require("./routes/checkoutRoutes");
 const orderRoutes = require("./routes/orderRoutes");
 const uploadRoutes = require("./routes/uploadRoutes");
 const subscribeRoute = require("./routes/subscribeRoute");
+const adminRoutes = require("./routes/admin/adminRoutes");
+const adminProductRoutes = require("./routes/admin/adminProductRoutes");
+const adminOrderRoutes = require("./routes/admin/adminOrderRoutes");
 
 const app = express();
 // to ensure our server is able to work with json data
@@ -23,11 +26,11 @@ dotenv.config();
 
 const PORT = process.env.PORT || 3000;
 
-// Connect to MondoDB 
+// Connect to MondoDB
 connectDB();
 
 app.get("/", (req, res) => {
-  res.json({message : "Welcome to rabit api"});
+  res.json({ message: "Welcome to rabit api" });
 });
 
 // API Routes
@@ -39,6 +42,10 @@ app.use("/api/orders", orderRoutes);
 app.use("/api/upload", uploadRoutes);
 app.use("/api/subscribe", subscribeRoute);
 
+// Admin
+app.use("/api/admin/users", adminRoutes);
+app.use("/api/admin/products", adminProductRoutes);
+app.use("/api/admin/orders", adminOrderRoutes);
 
 app.listen(PORT, () => {
   console.log(`Server is running on http://localhost:${PORT}`);
