@@ -1,7 +1,7 @@
 const express = require("express");
 const User = require("../models/User");
 const jwt = require("jsonwebtoken");
-const {protect} = require("../middleware/authMiddleware");
+const { protect } = require("../middleware/authMiddleware");
 
 const router = express.Router();
 
@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
     );
   } catch (error) {
     console.log("Error userRoutes-47 /register POST:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -89,16 +89,15 @@ router.post("/login", async (req, res) => {
     );
   } catch (error) {
     console.log("Error userRoutes-91 /login POST:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
-
 
 // @route GET /api/users/profile
 // @desc Get logged-in user's profile (Protected Route)
 // @access Private
 router.get("/profile", protect, async (req, res) => {
-    res.json(req.user);
-})
+  res.json(req.user);
+});
 
 module.exports = router;

@@ -58,7 +58,7 @@ router.post("/", protect, admin, async (req, res) => {
     res.status(201).json(createdProduct);
   } catch (error) {
     console.log("Error productRoutes-60 /products POST:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -124,7 +124,7 @@ router.put("/:id", protect, admin, async (req, res) => {
     }
   } catch (error) {
     console.log("Error productRoutes-126 /products/:id PUT:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -145,7 +145,7 @@ router.delete("/:id", protect, admin, async (req, res) => {
     }
   } catch (error) {
     console.log("Error productRoutes-147 /products/:id DELETE:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -239,7 +239,7 @@ router.get("/", async (req, res) => {
     res.json(products);
   } catch (error) {
     console.log("Error productRoutes-241 /products/ GET:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -256,7 +256,7 @@ router.get("/best-seller", async (req, res) => {
     }
   } catch (error) {
     console.log("Error productRoutes-258 /products/best-seller GET :", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -269,7 +269,7 @@ router.get("/new-arrivals", async (req, res) => {
     res.json(newArrivals);
   } catch (error) {
     console.log("Error productRoutes-271 /products/new-arrivals GET :", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -286,7 +286,7 @@ router.get("/:id", async (req, res) => {
     }
   } catch (error) {
     console.log("Error productRoutes-288 /products/:id GET :", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -310,7 +310,7 @@ router.get("/similar/:id", async (req, res) => {
     res.json(similarProducts);
   } catch (error) {
     console.log("Error productRoutes-312 /products/similar/:id GET :", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 

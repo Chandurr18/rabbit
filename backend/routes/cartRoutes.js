@@ -83,7 +83,7 @@ router.post("/", async (req, res) => {
     }
   } catch (error) {
     console.log("Error cartRoutes-85 /cart POST:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -91,8 +91,6 @@ router.post("/", async (req, res) => {
 // @desc Update product quantity in the cart for guest or logged-in user
 // @access Public
 router.put("/", async (req, res) => {
-  console.log("REQ BODY =>", req.body);
-
   const { productId, quantity, size, color, guestId, userId } = req.body;
 
   try {
@@ -125,7 +123,7 @@ router.put("/", async (req, res) => {
     }
   } catch (error) {
     console.log("Error cartRoutes-124 /cart PUT:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -160,7 +158,7 @@ router.delete("/", async (req, res) => {
     }
   } catch (error) {
     console.log("Error cartRoutes-162 /cart DELETE:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -179,7 +177,7 @@ router.get("/", async (req, res) => {
     }
   } catch (error) {
     console.log("Error cartRoutes-182 /cart GET:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 
@@ -228,28 +226,26 @@ router.post("/merge", protect, async (req, res) => {
             "Error cartRoutes-229 /cart/merge POST: deleting cart",
             error
           );
-          res.status(500).send("Server Error");
+          res.status(500).json({ message: "Server Error" });
         }
         res.status(200).json(userCart);
-      }
-      else{
+      } else {
         // If user has no existing cart, assign the guest cart to the user
         guestCart.user = req.user._id;
         guestCart.guestId = undefined;
         await guestCart.save();
         res.status(200).json(guestCart);
       }
-    }
-    else{
-      if(userCart){
+    } else {
+      if (userCart) {
         // Guest cart has already been merged, return user cart
         return res.status(200).json(userCart);
       }
-      res.status(404).json({message : "Guest cart not found"});
+      res.status(404).json({ message: "Guest cart not found" });
     }
   } catch (error) {
     console.log("Error cartRoutes-234 /cart/merge POST:", error);
-    res.status(500).send("Server Error");
+    res.status(500).json({ message: "Server Error" });
   }
 });
 

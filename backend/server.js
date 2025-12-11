@@ -7,6 +7,10 @@ const connectDB = require("./config/db");
 const userRoutes = require("./routes/userRoutes");
 const productRoutes = require("./routes/productRoutes");
 const cartRoutes = require("./routes/cartRoutes");
+const checkoutRoutes = require("./routes/checkoutRoutes");
+const orderRoutes = require("./routes/orderRoutes");
+const uploadRoutes = require("./routes/uploadRoutes");
+const subscribeRoute = require("./routes/subscribeRoute");
 
 const app = express();
 // to ensure our server is able to work with json data
@@ -23,13 +27,17 @@ const PORT = process.env.PORT || 3000;
 connectDB();
 
 app.get("/", (req, res) => {
-  res.send("Welcome to rabit api");
+  res.json({message : "Welcome to rabit api"});
 });
 
 // API Routes
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/cart", cartRoutes);
+app.use("/api/checkout", checkoutRoutes);
+app.use("/api/orders", orderRoutes);
+app.use("/api/upload", uploadRoutes);
+app.use("/api/subscribe", subscribeRoute);
 
 
 app.listen(PORT, () => {
