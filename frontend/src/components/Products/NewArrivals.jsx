@@ -1,3 +1,4 @@
+import axios from "axios";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { FiChevronLeft, FiChevronRight } from "react-icons/fi";
 import { Link } from "react-router-dom";
@@ -10,56 +11,21 @@ const NewArrivals = () => {
   const [canScrollRight, setCanScrollRight] = useState(true);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
 
-  const newArrivals = [
-    {
-      _id: "1",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=1" }],
-    },
-    {
-      _id: "2",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=2" }],
-    },
-    {
-      _id: "3",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=3" }],
-    },
-    {
-      _id: "4",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=4" }],
-    },
-    {
-      _id: "5",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=5" }],
-    },
-    {
-      _id: "6",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=6" }],
-    },
-    {
-      _id: "7",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=7" }],
-    },
-    {
-      _id: "8",
-      name: "Stylish Jacket",
-      price: 120,
-      images: [{ url: "https://picsum.photos/500/500?random=8" }],
-    },
-  ];
+  const [newArrivals, setNewArrivals] = useState([]);
+
+  useEffect(() => {
+    const fetchNewArrivals = async () => {
+      try {
+        const response = await axios.get(
+          `${import.meta.env.VITE_BACKEND_URL}/api/products/new-arrivals`
+        );
+        setNewArrivals(response.data);
+      } catch (error) {
+        console.error(error);
+      }
+    };
+    fetchNewArrivals();
+  }, []);
 
   // ----------------------
   // Drag Handlers
@@ -104,7 +70,7 @@ const NewArrivals = () => {
       setCanScrollLeft(leftScroll > 0);
       setCanScrollRight(Math.ceil(leftScroll) < Math.ceil(maxScroll));
     }
-  }, []);
+  }, [newArrivals]);
 
   useEffect(() => {
     const container = scrollRef.current;
@@ -116,7 +82,7 @@ const NewArrivals = () => {
     return () => {
       container.removeEventListener("scroll", updateScrollButtons);
     };
-  }, []);
+  }, [newArrivals]);
 
   return (
     <section className="mt-8 sm:mt-0">
@@ -160,7 +126,9 @@ const NewArrivals = () => {
         <div
           ref={scrollRef}
           className={`container w-full flex space-x-6 overflow-x-scroll select-none 
-                     scrollbar-hide relative [scrollbar-width:none] ${isDragging ? "cursor-grabbing" : "cursor-grab"}`}
+                     scrollbar-hide relative [scrollbar-width:none] ${
+                       isDragging ? "cursor-grabbing" : "cursor-grab"
+                     }`}
           onMouseDown={handleMouseDown}
           onMouseMove={handleMouseMove}
           onMouseUp={handleMouseUpLeave}
@@ -171,7 +139,7 @@ const NewArrivals = () => {
               key={product._id}
               className="min-w-[70%] sm:min-w-[40%] lg:min-w-[25%] relative"
             >
-                 {/* Image */}
+              {/* Image */}
               <img
                 src={product.images[0].url}
                 alt={product.name}

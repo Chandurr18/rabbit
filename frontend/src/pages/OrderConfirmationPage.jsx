@@ -1,41 +1,29 @@
-const checkout = {
-  _id: "1234560",
-  createdAt: new Date(),
-  checkoutItems: [
-    {
-      productId: "",
-      name: "Stylish Jacket",
-      color: "Black",
-      size: "M",
-      price: 150,
-      quantity: 1,
-      image: "https://picsum.photos/150?random=1",
-    },
-    {
-      productId: "2",
-      name: "T-Shirt",
-      color: "Blue",
-      size: "XL",
-      price: 120,
-      quantity: 2,
-      image: "https://picsum.photos/150?random=2",
-    },
-  ],
-  shippingAddress: {
-    address: "123 Fashion Street",
-    city: "New York",
-    country: "USA",
-  },
-};
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router-dom";
+import { clearCart } from "../redux/slice/cartSlice";
 
 const OrderConfirmationPage = () => {
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+  const { checkout } = useSelector((state) => state.checkout);
+
+  // Clear cart when the order is confirmed
+  useEffect(() => {
+    if (checkout && checkout._id) {
+      dispatch(clearCart());
+      localStorage.removeItem("cart");
+    } else {
+      navigate("/my-orders");
+    }
+  }, [checkout, dispatch, navigate]);
 
   const calculateEstimateDelivery = (createAt) => {
     const orderDate = new Date(createAt);
     orderDate.setDate(orderDate.getDate() + 1); //Add 10 days to order date
     return orderDate.toLocaleDateString();
   };
-  
+
   return (
     <div className="max-w-4xl mx-auto p-6 bg-white">
       <h1 className="text-4xl font-bold text-center text-emerald-700 mb-8">
@@ -96,15 +84,20 @@ const OrderConfirmationPage = () => {
           <div className="grid grid-cols-2 gap-8">
             {/* Payment info */}
             <div>
-                <h4 className="text-lg font-semibold mb-2">Payment</h4>
-                <p className="text-gray-600">PayPal</p>
+              <h4 className="text-lg font-semibold mb-2">Payment</h4>
+              <p className="text-gray-600">PayPal</p>
             </div>
 
             {/* Delivery Info */}
             <div>
-                <h4 className="text-lg font-semibold mb-2">Delivery</h4>
-                <p className="text-gray-600">{checkout.shippingAddress.address}</p>
-                <p className="text-gray-600">{checkout.shippingAddress.city}, {checkout.shippingAddress.country}</p>
+              <h4 className="text-lg font-semibold mb-2">Delivery</h4>
+              <p className="text-gray-600">
+                {checkout.shippingAddress.address}
+              </p>
+              <p className="text-gray-600">
+                {checkout.shippingAddress.city},{" "}
+                {checkout.shippingAddress.country}
+              </p>
             </div>
           </div>
         </div>

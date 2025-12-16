@@ -36,6 +36,8 @@ const orderSchema = new mongoose.Schema(
       ref: "User",
       required: true,
     },
+    name: String,
+    email: String,
     orderItems: [orderItemSchema],
     shippingAddress: {
       address: {
@@ -77,15 +79,15 @@ const orderSchema = new mongoose.Schema(
     deliveredAt: {
       type: Date,
     },
-    paymentStatus : {
-        type :String,
-        default : "pending"
+    paymentStatus: {
+      type: String,
+      default: "pending",
     },
-    status : {
-        type : String,
-        enum : ["Processing", "Shipped","Delivered", "Cancelled"],
-        default : "Processing"
-    }
+    status: {
+      type: String,
+      enum: ["Processing", "Shipped", "Delivered", "Cancelled"],
+      default: "Processing",
+    },
   },
   { timestamps: true }
 );
