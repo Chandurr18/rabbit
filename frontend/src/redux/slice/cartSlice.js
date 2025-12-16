@@ -90,8 +90,8 @@ export const removeFromCart = createAsyncThunk(
 );
 
 // Thunk to merge guest cart into user cart
-export const mergeCart = createAsyncThunk;
-"cart/mergeCart",
+export const mergeCart = createAsyncThunk(
+  "cart/mergeCart",
   async ({ guestId, user }, { rejectWithValue }) => {
     try {
       const response = await axios.post(
@@ -108,11 +108,12 @@ export const mergeCart = createAsyncThunk;
       console.log("Error", error);
       return rejectWithValue(error.response.data);
     }
-  };
+  }
+);
 
 const cartSlice = createSlice({
   name: "cart",
-  initiaState: {
+  initialState: {
     cart: loadCartFromStorage(),
     loading: false,
     error: null,
@@ -194,5 +195,5 @@ const cartSlice = createSlice({
   },
 });
 
-export const {clearCart} = cartSlice.actions;
+export const { clearCart } = cartSlice.actions;
 export default cartSlice.reducer;

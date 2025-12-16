@@ -273,23 +273,6 @@ router.get("/new-arrivals", async (req, res) => {
   }
 });
 
-// @route GET /api/products/:id
-// @desc Get a product by ID
-//  @access Public
-router.get("/:id", async (req, res) => {
-  try {
-    const product = await Product.findById(req.params.id);
-    if (product) {
-      res.json(product);
-    } else {
-      res.status(404).json({ message: "Product not found" });
-    }
-  } catch (error) {
-    console.log("Error productRoutes-288 /products/:id GET :", error);
-    res.status(500).json({ message: "Server Error" });
-  }
-});
-
 // @route GET /api/products/similar/:id
 // @desc Retreive similar products based on the current product's gender and category
 //  @access Public
@@ -309,7 +292,24 @@ router.get("/similar/:id", async (req, res) => {
 
     res.json(similarProducts);
   } catch (error) {
-    console.log("Error productRoutes-312 /products/similar/:id GET :", error);
+    console.log("Error productRoutes-294 /products/similar/:id GET :", error);
+    res.status(500).json({ message: "Server Error" });
+  }
+});
+
+// @route GET /api/products/:id
+// @desc Get a product by ID
+//  @access Public
+router.get("/:id", async (req, res) => {
+  try {
+    const product = await Product.findById(req.params.id);
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.log("Error productRoutes-312 /products/:id GET :", error);
     res.status(500).json({ message: "Server Error" });
   }
 });

@@ -47,7 +47,7 @@ router.post("/", upload.single("image"), async (req, res) => {
     const result = await StreamUpload(req.file.buffer);
 
     // Resold with the uploaded image url;
-    res.json({ image: result.secure_url });
+    res.json({ imageUrl: result.secure_url });
   } catch (error) {
     console.log("Error uploadRoutes-49 /api/upload POST:", error);
     res.status(500).json({ message: "Server Error" });
