@@ -30,7 +30,7 @@ const Profile = () => {
           {/* Left Section */}
           <div className="w-full md:w-1/3 lg:w-1/4 shadow rounded-lg p-6">
             <h1 className="text-2xl md:text-3xl font-bold mb-4">
-              {user.name || "Deleted User"}
+              {user?.name || "Deleted User"}
             </h1>
             <p className="text-lg text-gray-600 mb-4">{user?.email}</p>
             <button

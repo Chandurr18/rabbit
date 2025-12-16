@@ -148,7 +148,7 @@ const UserManagement = () => {
             {users.map((user) => (
               <tr key={user._id} className="border-b hover:bg-gray-50">
                 <td className="p-4 font-medium text-gray-900 whitespace-nowrap">
-                  {user.name || 'Deleted User'}
+                  {user?.name || 'Deleted User'}
                 </td>
 
                 <td className="p-4">{user.email}</td>
@@ -160,7 +160,7 @@ const UserManagement = () => {
                       handleRoleChange(
                         user._id,
                         e.target.value,
-                        user.name,
+                        user?.name,
                         user.email
                       )
                     }
