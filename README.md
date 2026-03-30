@@ -205,7 +205,7 @@ Fork it, improve it, break it, fix it — let’s build.
 
 ---
 
-## 🧑‍💻 Author
+## 🚀 Behind the Code
 
 Built with 💙, bugs, and late-night debugging.
 
@@ -217,6 +217,10 @@ If you liked this project:
 
 ---
 
-**Rabbit 🐰 — Fast. Clean. Full-Stack.**
+## 👨‍💻 Author
+
+Chandra Sekhar Chinthala
 
 ---
+
+🔥 Happy Coding!
